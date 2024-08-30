@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bibliografía</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #6f86d6, #48c6ef); /* Fondo gradiente */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .book {
+            width: 200px;
+            height: 300px;
+            background: #f8f9fa;
+            border: 2px solid #333;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out; /* Animación de entrada */
+        }
+        .book:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+        .book.highlight {
+            border-color: #ff6f61;
+            transform: scale(1.1);
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .book-cover {
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        .hidden {
+            display: none;
+        }
+
+        .book-info {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #101010;
+        }
+        .book-menu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: #101010;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            overflow-y: auto; /* Scroll para el contenido del menú si es necesario */
+            transition: opacity 0.3s ease;
+        }
+        .book-menu.show {
+            display: block;
+            opacity: 1;
+        }
+        .book-menu.hide {
+            opacity: 0;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #fff;
+            margin: 20px 0;
+        }
+        p {
+            text-align: center;
+            color: #fff;
+        }
+        a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 40px auto;
+            padding: 15px;
+            text-align: center;
+            background-color: #ff6f61;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .back-button:hover {
+            background-color: #ff8a80;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>BIBLIOGRAFIA ESTRUCTURAS DISCRETAS</h1>
+    <h2>LIBROS FISICOS</h2>
+    <h2>¿Dónde encontrarlos?</h2>
+
+    <!-- Menú desplegable de búsqueda -->
+    <div class="search-container">
+        <select id="search-dropdown" onchange="searchBooks()">
+            <option value="">Seleccionar tema...</option>
+            <option value="TC">Teoría de computabilidad</option>
+            <option value="TG">Teoría de Gráficas</option>
+            <option value="SA">Sistemas Algebraicos</option>
+            <option value="CON">Conjuntos</option>
+            <option value="LP">Lógica Proposicional</option>
+            <!-- Añadir más temas según sea necesario -->
+        </select>
+    </div>
+
+    <div class="book-container">
+        <div class="book" onclick="toggleMenu('book1-menu')" data-tema="matemática discreta, lógica">
+            <div class="book-cover">Matemática discreta y lógica</div>
+            <div class="book-info">GRASSMANN, Winfried K, TREMBLAY, J. P.</div>
+            <div class="book-menu" id="book1-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA76.9M35</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book2-menu')" data-tema="TC,TG,SA,CON,LP">
+            <div class="book-cover">Discrete Mathematics</div>
+            <div class="book-info">JOHNSONBAUGH, Richard</div>
+            <div class="book-menu" id="book2-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA76.2 J64</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA39.2, J64, 2018, G1202635</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book3-menu')">
+            <div class="book-cover">Algorithms: Sequential, Parallel, and Distributed</div>
+            <div class="book-info">KENNETH A. Berman, JEROME L. Paul</div>
+            <div class="book-menu" id="book3-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA76.9A43 B467 199</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA76.9 K64
+                    2018</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book4-menu')" data-tema="TC,TG,SA,CON,LP">
+            <div class="book-cover">Discrete Mathematical Structures</div>
+            <div class="book-info">KOLMAN, Bernard</div>
+            <div class="book-menu" id="book4-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA76.9 K64
+                    1996</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA76.9, K64, 2018, G2021</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book5-menu')" data-tema="TC,TG,SA,CON,LP">
+            <div class="book-cover">Elementos de matemáticas discretas</div>
+            <div class="book-info">LIU, C. L.</div>
+            <div class="book-menu" id="book5-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA164 L568</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA164 L568</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book6-menu')">
+            <div class="book-cover">Matemáticas discretas y sus aplicaciones</div>
+            <div class="book-info">ROSEN, Kenneth H.</div>
+            <div class="book-menu" id="book6-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA39.2 R66
+                    2007b</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA39.2 R6618
+                    2004
+                    </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book7-menu')">
+            <div class="book-cover">Matemáticas discretas con aplicación a las ciencias de la computación</div>
+            <div class="book-info">TREMBLAY, Jean-Paul; MANOHAR, Ram RANGEL GUTIÉRREZ, Raymundo Hugo (trad.)</div>
+            <div class="book-menu" id="book7-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA39.2, T44, 1996 </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book8-menu')" data-tema="TC">
+            <div class="book-cover">Matemáticas discretas con teoría de gráficas y combinatoria</div>
+            <div class="book-info">VEERARAJAN, T.</div>
+            <div class="book-menu" id="book8-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA248 V4418</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA248 V4418</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book9-menu')" data-tema="TG,SA,CON,LP">
+            <div class="book-cover">Introductory Discrete Mathematics</div>
+            <div class="book-info">BALAKRISHNAN, V. K.</div>
+            <div class="book-menu" id="book9-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA39.2 B356
+                    1996
+                    </p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA39.2 B356
+                    1996
+                    </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book10-menu')">
+            <div class="book-cover">Matemáticas discretas</div>
+            <div class="book-info">BOGART, Kenneth P.</div>
+            <div class="book-menu" id="book10-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> QA76.9M35 S755</p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book11-menu')" data-tema="TG,SA,CON,LP">
+            <div class="book-cover">Matemática discreta</div>
+            <div class="book-info">COMELLAS, Francesc</div>
+            <div class="book-menu" id="book11-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA37.3 M3718
+                    2002
+                    </p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book12-menu')" data-tema="TG,SA,CON,LP">
+            <div class="book-cover">Discrete mathematics: elementary and beyond</div>
+            <div class="book-info">LOVASZ, Laszlo</div>
+            <div class="book-menu" id="book12-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA39.3 L68</p>
+            </div>
+        </div>
+        <div class="book" onclick="toggleMenu('book13-menu')" data-tema="TG,SA,CON,LP">
+            <div class="book-cover">Matemáticas discretas</div>
+            <div class="book-info">SCHEINERMAN, Edward</div>
+            <div class="book-menu" id="book13-menu">
+                <p><strong>Biblioteca:</strong> Biblioteca “ING. ANTONIO DOVALÍ JAIME”</p>
+                <p><strong>Clasificación:</strong> -- </p>
+                <p><strong>Biblioteca:</strong> Biblioteca “MTRO. ENRIQUE RIVERO BORRELL”</p>
+                <p><strong>Clasificación:</strong> QA37.2 S3518
+                    2001
+                    </p>
+            </div>
+        </div>
+        <!-- Agregar los demás libros aquí, siguiendo el mismo formato -->
+    </div>
+
+    <p>¿TIENES DUDA DE DONDE BUSCARLOS? <a href="DUDA.html">DA CLICK AQUÍ</a></p>
+
+    <!-- Botón de regresar con nuevo diseño y animación -->
+    <button class="back-button" onclick="window.location.href='menub.html'">Regresar a Menú</button>
+
+
+    <script>
+        function toggleMenu(menuId) {
+            var menu = document.getElementById(menuId);
+            if (menu.classList.contains("show")) {
+                menu.classList.remove("show");
+                menu.classList.add("hide");
+            } else {
+                var menus = document.querySelectorAll(".book-menu");
+                menus.forEach(function(m) {
+                    m.classList.remove("show");
+                    m.classList.add("hide");
+                });
+                menu.classList.remove("hide");
+                menu.classList.add("show");
+            }
+        }
+
+        function searchBooks() {
+            var selectedTema = document.getElementById("search-dropdown").value;
+            var books = document.getElementsByClassName("book");
+
+            for (var i = 0; i < books.length; i++) {
+                var book = books[i];
+                var temas = book.getAttribute("data-tema");
+                
+                if (temas && temas.includes(selectedTema)) {
+                    book.classList.remove("hidden");
+                    book.classList.add("highlight");
+                } else {
+                    book.classList.add("hidden");
+                    book.classList.remove("highlight");
+                }
+
+                // Si no hay un tema seleccionado, mostrar todos los libros
+                if (selectedTema === "") {
+                    book.classList.remove("hidden");
+                    book.classList.remove("highlight");
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
