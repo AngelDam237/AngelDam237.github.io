@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #f0f8ff, #e6f7ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        .menu-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        h1 {
+            color: #333;
+            font-family: 'Verdana', sans-serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .search-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .search-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .search-option:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .search-option img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .search-option:hover img {
+            transform: scale(1.1);
+        }
+        .search-option h2 {
+            margin-top: 10px;
+            color: #555;
+            font-family: 'Verdana', sans-serif;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Favor de seleccionar alguna de las opciones de búsqueda</h1>
+        <div class="search-option" onclick="navigateTo('ED.html')">
+            <img src="libroi.webp" alt="Icono de libro">
+            <h2>Libros Físicos</h2>
+        </div>
+        <div class="search-option" onclick="navigateTo('digitales.html')">
+            <img src="laptop.png" alt="Icono de laptop">
+            <h2>Libros Digitales</h2>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

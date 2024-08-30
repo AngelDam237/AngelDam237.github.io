@@ -1,0 +1,68 @@
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.postit-container {
+    display: flex;
+    gap: 100px; /* Espacio entre los post-its */
+}
+
+.postit {
+    width: 500px; /* Ajusta el tamaño del marco */
+    padding: 10px;
+    background-color: #fffa65; /* Color de fondo similar a un post-it */
+    border: 2px solid #ddd; /* Borde del marco */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+    transform: rotate(-3deg); /* Pequeña rotación para simular un post-it */
+    position: relative;
+}
+
+.postit img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ccc; /* Borde de la imagen */
+}
+
+/* Estilo para la cinta adhesiva */
+.postit::before {
+    content: "";
+    position: absolute;
+    top: -15px; /* Posición superior de la cinta */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Ancho de la cinta adhesiva */
+    height: 20px; /* Alto de la cinta adhesiva */
+    background-color: rgba(255, 255, 255, 0.8); /* Color de la cinta adhesiva */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra para la cinta adhesiva */
+    border-radius: 5px; /* Bordes redondeados para la cinta */
+    z-index: 1; /* Asegura que la cinta esté encima del post-it */
+}
+
+
+.back-button-container {
+    text-align: right;
+    margin-top: 20px; /* Ajusta según necesites */
+}
+
+.back-button {
+    background-color: #f0f0f0; /* Cambia el color de fondo según prefieras */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    background-color: #e0e0e0; /* Cambia el color al pasar el ratón */
+}
