@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliografía Digital</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #fff;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .phone-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .phone {
+            width: 160px;
+            height: 320px;
+            background: #000;
+            border: 2px solid #333;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .phone:hover {
+            transform: scale(1.05) rotateY(10deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .phone .screen {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateZ(50px);
+        }
+
+        .phone.active .screen {
+            display: block;
+        }
+
+        .phone .screen p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .phone .screen a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .phone .screen a:hover {
+            text-decoration: underline;
+        }
+
+        .phone .placeholder-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%; /* Ajusta para que la imagen llene todo el ancho disponible */
+        height: auto; /* Ajusta automáticamente la altura para mantener la proporción 9:16 */
+        max-height: 80%; /* Asegura que la imagen no exceda la altura de la pantalla del teléfono */
+        object-fit: cover; /* Hace que la imagen cubra completamente el contenedor sin distorsionarse */
+        border-radius: 8px; /* Opción: añade un borde redondeado a la imagen */
+        opacity: 0.7; /* Mantiene una ligera transparencia cuando está apagada */
+        }
+
+
+        .phone.active .placeholder-image {
+            display: none;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        select {
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            color: #000;
+        }
+
+        button {
+            display: block;
+            width: 220px;
+            height: 50px;
+            margin: 40px auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>BIBLIOGRAFÍA DIGITAL</h1>
+    <h2>LIBROS DIGITALES</h2>
+    <h2>¿Dónde encontrarlos?</h2>
+
+    <!-- Menú desplegable de búsqueda -->
+    <div class="search-container">
+        <select id="search-dropdown" onchange="searchPhones()">
+            <option value="">Seleccionar tema...</option>
+            <option value="TC">Teoría de Computabilidad</option>
+            <option value="TG">Teoría de Gráficas</option>
+            <option value="SA">Sistemas Algebraicos</option>
+            <option value="CON">Conjuntos</option>
+            <option value="LP">Lógica Proposicional</option>
+            <!-- Añadir más temas según sea necesario -->
+        </select>
+    </div>
+
+    <div class="phone-container">
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TC,TG,SA,CON,LP">
+            <img src="Libro1.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>JOHNSONBAUGH, Richard
+                    <strong>Discrete Mathematics</strong>
+                </p>
+                <p><a href="https://broman.dev/download/Discrete%20Mathematics%208th%20Edition.pdf" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TC,TG,SA,CON,LP">
+            <img src="Libro2.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>KOLMAN, Bernard
+                    <strong>Discrete Mathematical Structures</strong>
+                </p>
+                <p><a href="https://www.dbscience.org/wp-content/uploads/2020/03/Discrete_Mathematical_Structures-Kolman.pdf" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TC,TG,SA,CON,LP">
+            <img src="Libro3.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>LIU, C. L.
+                    <strong>Elementos de matemáticas discretas</strong>
+                </p>
+                <p><a href="https://gc.scalahed.com/recursos/files/r161r/w25470w/Elementosdematematicasdiscretas.pdf" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TC">
+            <img src="Libro4.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>VEERARAJAN, T.
+                    <strong>Matemáticas discretas con teoría de gráficas y combinatoria</strong>
+                </p>
+                <p><a href="https://pdfcoffee.com/matematicas-discretas-con-teoria-de-graficas-y-combinatoria-pdf-free.html" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TG,SA,CON,LP">
+            <img src="Libro5.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>BALAKRISHNAN, V. K.
+                    <strong>Introductory Discrete Mathematics</strong>
+                </p>
+                <p><a href="https://books.google.com.mx/books?id=kbooAAAAQBAJ&printsec=frontcover&redir_esc=y#v=onepage&q&f=false" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TG,SA,CON,LP">
+            <img src="Libro6.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>COMELLAS, Francesc
+                    <strong>Matemática discreta</strong>
+                </p>
+                <p><a href="https://marubarrenechea.wordpress.com/wp-content/uploads/2013/05/me02400c.pdf" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TC,TG,SA,CON,LP">
+            <img src="Libro7.png" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>LOVASZ, Laszlo
+                    <strong>Discrete Mathematics: Elementary and Beyond</strong>
+                </p>
+                <p><a href="https://file.fouladi.ir/courses/discmath/books/Springer.Verlag.Discrete.Mathematics.Elementary.and.Beyond.ebook-TLFeBOOK.pdf" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+        <div class="phone" onclick="toggleScreen(this)" data-tema="TG,SA,CON,LP">
+            <img src="Libro8.webp" alt="Imagen placeholder" class="placeholder-image">
+            <div class="screen">
+                <p>SCHEINERMAN, Edward
+                    <strong>Matemáticas discretas</strong>
+                </p>
+                <p><a href="https://es.slideshare.net/slideshow/scheinerman-e-r-matemtica-discretapdf/255707634" target="_blank">Haz clic aquí para acceder</a></p>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="window.location.href='menub.html'">Regresar a Menú</button>
+
+    <script>
+        function toggleScreen(phone) {
+            var screen = phone.querySelector('.screen');
+            var isActive = phone.classList.contains('active');
+            
+            // Apaga todas las pantallas activas
+            document.querySelectorAll('.phone.active .screen').forEach(function(activeScreen) {
+                activeScreen.style.display = 'none';
+                activeScreen.parentNode.classList.remove('active');
+            });
+
+            // Si no estaba activa, enciende la pantalla de este teléfono
+            if (!isActive) {
+                screen.style.display = 'block';
+                phone.classList.add('active');
+            }
+        }
+
+        function searchPhones() {
+            var selectedTema = document.getElementById('search-dropdown').value.toUpperCase();
+            var phones = document.querySelectorAll('.phone');
+            phones.forEach(function(phone) {
+                var temas = phone.getAttribute('data-tema').toUpperCase();
+                if (temas.includes(selectedTema) || selectedTema === "") {
+                    phone.style.display = 'block';
+                } else {
+                    phone.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
